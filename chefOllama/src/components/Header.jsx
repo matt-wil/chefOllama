@@ -1,9 +1,10 @@
-import React from 'react'
+import chefOllamaLogo from "/Users/mattwilliams/Desktop/ChefOllamaApp/chefOllama/chefOllama/src/assets/Chefllama2.png"
 
-const Header = () => {
-  return (
-    <div>Header</div>
-  )
+export default function Header() {
+    return (
+        <header>
+            <img src={chefOllamaLogo}/>
+            <h1>Chef Ollama</h1>
+        </header>
+    )
 }
-
-export default Header
