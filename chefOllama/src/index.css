@@ -21,6 +21,17 @@ header {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
 }
 
+.recipe-container {
+  color: #475467;
+  line-height: 28px;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.recipe-container ul li, .recipe-container ol li {
+  margin-bottom: 8px;
+}
+
 footer {
   display: flex;
   justify-content: center;

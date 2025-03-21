@@ -1,5 +1,6 @@
 import React from 'react'
 import { getRecipeFromMistral } from '../ai'
+import ReactMarkdown from 'react-markdown'
 
 const Body = () => {
 
@@ -61,9 +62,13 @@ const Body = () => {
             
             {recipeShown && <section>
                 <h2>Chef Ollama Recommends:</h2>
-                <article className="suggested-recipe-container" aria-live="polite">
-                    <p>Based on the ingredients you have available, I would recommend </p>
-                    {recipe && <p>{recipe}</p>}
+                <article className="recipe-container" aria-live="polite">
+                    {recipe && 
+                    <section className='recipe-container'>
+                        <ReactMarkdown>
+                            {recipe}
+                        </ReactMarkdown>
+                    </section>}
                 </article>
             </section>}
         </main>
