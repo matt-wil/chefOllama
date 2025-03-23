@@ -1,14 +1,16 @@
-import React from 'react'
+import {useEffect, useState, useRef } from 'react'
 import { getRecipeFromMistral } from '../ai'
 import ReactMarkdown from 'react-markdown'
 
 const Body = () => {
 
-    const [ingredients, setIngredients] = React.useState([])
-    const [recipeShown, setRecipeShown] = React.useState(false)
-    const [recipe, setRecipe] = React.useState(null)
-    const [loading, setLoading] = React.useState(false)
-    const [error, setError] = React.useState(null)
+    const [ingredients, setIngredients] = useState([])
+    const [recipeShown, setRecipeShown] = useState(false)
+    const [recipe, setRecipe] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+
+    const recipeSection = useRef(null)
 
     const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient}>{ingredient}</li>
@@ -35,6 +37,12 @@ const Body = () => {
         }
     }
 
+    useEffect(() => {
+        if (recipe && recipeSection.current) {
+            recipeSection.current.scrollIntoView({ behavior: "smooth" })
+        }
+    }, [recipe])
+
     return (
         <main>
             <form action={addIngredient} className="add-ingredient-form">
@@ -51,7 +59,7 @@ const Body = () => {
                 <h2>Ingredients on hand:</h2>
                 <ul className="ingredients-list" aria-live="polite">{ingredientsListItems}</ul>
                 {ingredients.length > 3 && <div className="get-recipe-container">
-                    <div>
+                    <div ref={recipeSection}>
                         <h3>Ready for a recipe?</h3>
                         <p>Generate a recipe from your list of ingredients.</p>
                     </div>
